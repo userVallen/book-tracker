@@ -1,0 +1,229 @@
+html {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(243, 243, 243);
+}
+body * {
+  font-family: "Gowun Dodum", sans-serif !important;
+}
+
+h1 {
+  font-size: 8rem;
+  margin: 2.5rem 0;
+}
+
+p {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+label {
+  font-size: 1.5rem;
+}
+
+input,
+textarea,
+select {
+  height: 2rem;
+  border: none;
+  border-bottom: solid 2px black;
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+}
+
+textarea {
+  height: unset;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 60%;
+}
+
+.list {
+  margin: 2rem 0;
+}
+
+.card {
+  position: relative;
+  margin: 3rem 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  column-gap: 2rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+.card * {
+  font-size: 1.25rem;
+}
+.card:hover {
+  border-color: black;
+}
+
+.editIcon,
+.delIcon {
+  display: flex;
+  position: absolute;
+  top: 2.5rem;
+  right: 1rem;
+  height: 28px;
+  width: auto;
+}
+
+.editIcon {
+  right: 4rem;
+}
+
+.cover img {
+  margin: 0.5rem 0;
+}
+
+.title {
+  font-size: 2.25rem;
+  text-decoration: underline;
+}
+
+.review {
+  margin-top: 2rem;
+}
+
+.open-button {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 2rem;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  background-color: black;
+  transition: transform 0.1s ease-in-out;
+}
+.open-button:hover {
+  transform: scale(1.1);
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.modal-content {
+  display: flex;
+  position: relative;
+  width: 40%;
+  padding: 2rem;
+  background-color: rgb(243, 243, 243);
+  border-radius: 8px;
+}
+.modal-content form {
+  width: 100%;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: transparent;
+  transition: transform 0.1s ease-in-out;
+}
+.close-button:hover {
+  transform: scale(1.1);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.add-button {
+  justify-self: center;
+  color: white;
+  background-color: black;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  transition: transform 0.1s ease-in-out;
+}
+.add-button:hover {
+  transform: scale(1.1);
+}
+
+.sort-form {
+  display: flex;
+  column-gap: 2rem;
+}
+.sort-form div {
+  display: flex;
+  flex-direction: column;
+}
+.sort-form label {
+  font-size: 18px;
+  margin-bottom: 0.25rem;
+}
+
+.autocomplete-list {
+  position: absolute;
+  width: 100%;
+  max-height: 12.5rem; /* ~5 items */
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin-top: 0.25rem;
+  list-style: none;
+  z-index: 1000;
+}
+
+.autocomplete-list li {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover,
+.autocomplete-list li:focus {
+  background-color: #f0f0f0;
+}
+
+.hidden {
+  display: none;
+}
+
+.gowun-dodum-regular {
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}

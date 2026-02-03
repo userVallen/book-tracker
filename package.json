@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "bootstrap": "^5.3.8",
+    "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "pg": "^8.17.1"
+  }
+}
