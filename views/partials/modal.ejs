@@ -9,9 +9,7 @@
     </button>
 
     <form action="<%= action %>" method="post">
-      <% if(item && item.id) { %>
-        <input type="hidden" name="id" value="<%= item.id %>">
-      <% } %>
+      <input type="hidden" name="id">
 
       <div class="input-group">
         <label for="title">Title</label>
@@ -25,7 +23,7 @@
           data-autocomplete="title"
         />
 
-        <input type="hidden" name="title" value="<%= item?.title %>" data-selected-title />
+        <input type="hidden" name="title" data-selected-title />
 
         <ul class="autocomplete-list hidden"></ul>
       </div>

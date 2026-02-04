@@ -43,43 +43,7 @@
 
         <% for(item of listItems) { %>
           <!-- Card -->
-          <div class="card" data-action="card-hover">
-            <div class="cover">
-              <img src=<%= item.cover %> alt="book cover">
-            </div>
-
-            <div class="details">
-              <p class="title"><%= item.title %></p>
-              <p class="author">By <%= item.author %></p>
-              <p class="date">Date read: <%= item.date_read.toISOString().split('T')[0]; %></p>
-              <p class="rating">Rating: <%= item.rating %>/5</p>
-              <p class="review"><%= item.review %></p>
-            </div>
-
-            <!-- Edit Icon -->
-            <button data-action="open-modal" data-modal="#editModal-<%= item.id %>">
-              <svg class="editIcon hidden" fill="#000" viewBox="0 0 256 256">
-                <path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z" />
-              </svg>
-            </button>
-              
-            <!-- Delete Icon -->
-            <form action="/delete" method="post">
-              <button type="submit" name="targetId" value=<%= item.id %>>
-                <svg class="delIcon hidden" fill="#000" viewBox="0 0 256 256">
-                  <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z" />
-                </svg>
-              </button>
-            </form>
-
-            <!-- Edit Modal -->
-            <%- include('partials/modal.ejs', { 
-              id: `editModal-${item.id}`,
-              action: "/edit", 
-              item: item, 
-              submitText: "Done" 
-            }); -%>
-          </div>
+           <%- include("partials/card.ejs", { item: item }) -%>
         <% } %>
       </div>
     </div>
@@ -90,6 +54,14 @@
         <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z" />
       </svg>
     </button>
+
+    <!-- Edit Modal -->
+    <%- include('partials/modal.ejs', { 
+      id: "editModal",
+      action: "/edit", 
+      item: null,
+      submitText: "Done" 
+    }); -%>
 
     <!-- Add Modal -->
     <%- include('partials/modal.ejs', { 

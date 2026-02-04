@@ -1,20 +1,67 @@
 // Open/close modals
 document.addEventListener("click", (e) => {
-  let trigger = e.target.closest(
+  const trigger = e.target.closest(
     "[data-action='open-modal'], [data-action='close-modal']",
   );
   if (!trigger) return;
 
-  let action = trigger.dataset.action;
+  const action = trigger.dataset.action;
 
   if (action === "open-modal") {
-    let modal = document.querySelector(trigger.dataset.modal);
+    const modal = document.querySelector(trigger.dataset.modal);
+    if (!modal) return;
+
+    if (modal.id === "editModal") {
+      modal.dataset.mode = "edit";
+
+      console.log("dataset is");
+      console.log(modal.querySelector("input[name='id']"));
+
+      modal.querySelector("[name='id']").value = trigger.dataset.id;
+      modal.querySelector("#title").value = trigger.dataset.title;
+      modal.querySelector("#title").readOnly = true;
+      modal.querySelector("[data-selected-title]").value =
+        trigger.dataset.title;
+      modal.querySelector("#date").value = trigger.dataset.date;
+      modal.querySelector("#rating").value = trigger.dataset.rating;
+      modal.querySelector("#review").value = trigger.dataset.review;
+    }
+
+    if (modal.id === "addModal") {
+      modal.dataset.mode = "add";
+    }
+
     modal?.classList.remove("hidden");
   }
 
   if (action === "close-modal") {
-    let modal = trigger.closest(".modal");
+    const modal = trigger.closest(".modal");
     modal?.classList.add("hidden");
+  }
+});
+
+// Options in mobile view
+document.addEventListener("click", (e) => {
+  // Toggle menu
+  const menuBtn = e.target.closest("[data-action='toggle-menu']");
+  if (menuBtn) {
+    const card = menuBtn.closest(".card");
+    const menu = card.querySelector(".card-menu");
+
+    // Close other menus
+    document.querySelectorAll(".card-menu:not(.hidden)").forEach((m) => {
+      if (m !== menu) m.classList.add("hidden");
+    });
+
+    menu.classList.toggle("hidden");
+    return;
+  }
+
+  // Close menus on outside click
+  if (!e.target.closest(".card-menu")) {
+    document
+      .querySelectorAll(".card-menu")
+      .forEach((m) => m.classList.add("hidden"));
   }
 });
 
@@ -24,7 +71,7 @@ document.addEventListener("click", (e) => {
 });
 
 // Searching suggestions
-let autocompleteTimeout = null;
+const autocompleteTimeout = null;
 
 document.addEventListener("input", (e) => {
   const input = e.target.closest("input[data-autocomplete='title']");
@@ -103,8 +150,10 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("submit", (e) => {
   const form = e.target;
-  const hiddenInput = form.querySelector("[data-selected-title]");
+  const modal = form.closest(".modal");
+  if (modal?.dataset.mode === "edit") return;
 
+  const hiddenInput = form.querySelector("[data-selected-title]");
   if (hiddenInput && !hiddenInput.value) {
     e.preventDefault();
     alert("Please select a title from the suggestions.");
@@ -113,7 +162,7 @@ document.addEventListener("submit", (e) => {
 
 // Select sorting & order
 document.addEventListener("change", (e) => {
-  let form = e.target.closest("#sortForm");
+  const form = e.target.closest("#sortForm");
   if (!form) return;
 
   form.submit();
@@ -121,7 +170,7 @@ document.addEventListener("change", (e) => {
 
 // Card hover effects
 document.addEventListener("mouseover", (e) => {
-  let card = e.target.closest("[data-action='card-hover']");
+  const card = e.target.closest("[data-action='card-hover']");
   if (!card) return;
 
   card.querySelector(".editIcon").classList.remove("hidden");
@@ -129,7 +178,7 @@ document.addEventListener("mouseover", (e) => {
 });
 
 document.addEventListener("mouseout", (e) => {
-  let card = e.target.closest("[data-action='card-hover']");
+  const card = e.target.closest("[data-action='card-hover']");
   if (!card) return;
 
   card.querySelector(".editIcon").classList.add("hidden");
